@@ -238,8 +238,6 @@ function addTagChange(val) {
       val.split(/[,，]/).map(item => item.trim()).filter(item => item)
   ));
 
-  form.receiveEmail.splice(form.receiveEmail.length - 1, 1)
-
   let has = false
   emails.forEach(email => {
     if (isEmail(email) && !form.receiveEmail.includes(email)) {
@@ -247,6 +245,9 @@ function addTagChange(val) {
       has = true
     }
   })
+
+  form.receiveEmail = form.receiveEmail.filter(e => isEmail(e))
+
   if (selectStatus && has) openSelect()
 }
 
